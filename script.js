@@ -35,45 +35,44 @@ function getRandomIntInclusive(min, max) {
     }));
   }
   
-  function initMap() {
-    const carto = L.map("map").setView([38.98, -76.93], 13);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  function initMap(){
+    const carto = L.map('map').setView([38.98, -76.93], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
-      attribution:
-        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(carto);
-    return carto;
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(carto);
+  return carto;
+  
   }
   
-  function markerPlace(array, map) {
-    console.log("array for markers", array);
+  function markerPlace(array,map) {
+    console.log('array for markers', array);
   
     map.eachLayer((layer) => {
       if (layer instanceof L.Marker) {
         layer.remove();
       }
     });
-  
+    
     array.forEach((item) => {
-      console.log('markerPlace', item);
+      console.log('markerPLace', item);
       const {coordinates} = item.geocoded_column_1;
-     L.marker([coordinates[1], coordinates[0]]).addTo(map);
   
+      L.marker((coordinates[1], coordinates[0])).addTo(map);
     })
+  
   }
   
   async function mainEvent() {
     // the async keyword means we can make API requests
-    const mainForm = document.querySelector(".main_form"); // This class name needs to be set on your form before you can listen for an event on it
     const filterDataButton = document.querySelector("#filter");
     const loadDataButton = document.querySelector("#data_load");
-    const clearDataButton = document.querySelector("#data_clear");
     const generateListButton = document.querySelector("#generate");
     const textField = document.querySelector("#resto");
   
     const loadAnimation = document.querySelector("#data_load_animation");
     loadAnimation.style.display = "none";
-    generateListButton.classList.add = "hidden";
+    generateListButton.classList.add = ("hidden");
   
     const carto = initMap();
   
@@ -84,11 +83,9 @@ function getRandomIntInclusive(min, max) {
     }
   
     let storedList = [];
-    let currentList = []; // this is "scoped" to the main event function
+    let currentList = []; 
   
-    /* We need to listen to an "event" to have something happen in our page - here we're listening for a "submit" */
     loadDataButton.addEventListener("click", async (submitEvent) => {
-      // async has to be declared on every function that needs to "await" something
       console.log("loading data");
       loadAnimation.style.display = "inline-block";
   
@@ -98,11 +95,11 @@ function getRandomIntInclusive(min, max) {
       );
   
       // This changes the response from the GET into data we can use - an "object"
-      const storedList = await results.json();
+      storedList = await results.json();
       localStorage.setItem("storedData", JSON.stringify(storedList));
       parsedData = storedList;
   
-      if (storedList?.length > 0) {
+      if (parsedData?.length > 0) {
         generateListButton.classList.remove('hidden');
       }
       
@@ -110,21 +107,9 @@ function getRandomIntInclusive(min, max) {
       // console.table(storedList);
     });
   
-    filterDataButton.addEventListener("click", (event) => {
-      console.log("clicked FilterButton");
-      const formData = new FormData(mainForm);
-      const formProps = Object.fromEntries(formData);
-  
-      console.log(formProps);
-      const newList = filterList(currentList, formProps.resto);
-  
-      console.log(newList);
-      injectHTML(newList);
-    });
-  
     generateListButton.addEventListener("click", (event) => {
       console.log("generate new list");
-      currentList = cutRestaurantList(storedList);
+      currentList = cutRestaurantList(parsedData);
       console.log(currentList);
       injectHTML(currentList);
       markerPlace(currentList, carto);
@@ -144,22 +129,6 @@ function getRandomIntInclusive(min, max) {
       console.log('localStorage Check', localStorage.getItem("storedData"));
     })
   }
-  /*
-        Now that you HAVE a list loaded, write an event listener set to your filter button
-        it should use the 'new FormData(target-form)' method to read the contents of your main form
-        and the Object.fromEntries() method to convert that data to an object we can work with
-    
-        When you have the contents of the form, use the placeholder at line 7
-        to write a list filter
-    
-        Fire it here and filter for the word "pizza"
-        you should get approximately 46 results
-      */
   
-  /*
-      This adds an event listener that fires our main event only once our page elements have loaded
-      The use of the async keyword means we can "await" events before continuing in our scripts
-      In this case, we load some data when the form has submitted
-    */
   document.addEventListener("DOMContentLoaded", async () => mainEvent()); // the async keyword means we can make API requests
   

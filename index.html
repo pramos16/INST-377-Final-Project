@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Paola Ramos' Labs for INST377</title>
+    <title>Paola Ramos INST 377 Final Project</title>
 
     <link
       rel="stylesheet"
@@ -12,58 +12,44 @@
       crossorigin=""
     />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./styles.css" />
 
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script
       src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
       integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
       crossorigin=""
     ></script>
+    
   </head>
   <body>
-    <div class="wrapper">
-      <header class="header"><h1>Paola Ramos' INST 377 Labs</h1></header>
-      <div class="container">
-        <div class="left_section box">
-          <h3>Form Inputs</h3>
-          <form class="box main_form">
-            <button type="button" id="data_load">Load County Data</button>
-            <button type="button" id="data_clear">Clear County Data</button>
-            <div>
-              <label for="resto">Restaurant Name</label>
-              <input type="text" id="resto" name="resto" />
-            </div>
-            <div class="buttons">
-              <button type="button" id="filter">Filter Data</button>
-              <button type="button" id="generate">Generate List</button>
-            </div>
-          </form>
+    <header class="header">Prince George's County Local Police Stations</header>
+    <div class="container">
+      <section class="left_section">
+        <div class="input box">
+          <label for="list_selector"></label>
+          <input type="text" name="list_selector" id="list_selector" />
         </div>
-        <div class="right_section box">
-          <h3>Local Restaurants</h3>
-          <div id="map" class="box" ></div>
+        <div class="buttons">
+          <button class="primary" id="data_load">Load Data</button>
+          <button class="secondary" id="generate">Generate List</button>
+        </div>
+        <div id="station_list">
+          <ol id="pgstation_list"></ol>
+        </div>
+      </section>
+      <section class="right_section">
+        <div id="map" class="box" ></div>
           <ol class="box" id="restaurant_list">
-            A list of local restaurants
+            Local Police Stations
           </ol>
           <div class="lds-ellipsis" id="data_load_animation">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
-    <footer class="footer">
-      Pramos16
-      <a
-        href="http://github.com/pramos16"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Paola Ramos Github Account</a
-      >
-    </footer>
-    <script src="./script.js"></script>
+    <footer class="footer"></footer>
+    <script src="script.js"></script>
   </body>
 </html>
