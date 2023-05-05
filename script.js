@@ -1,16 +1,10 @@
 /*
   Hook this script to index.html
   by adding `<script src="script.js">` just before your closing `</body>` tag
-*/
-function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-  
+*/  
   function injectHTML(list) {
     console.log("fired injectHTML");
-    const target = document.querySelector("#restaurant_list");
+    const target = document.querySelector("#station_list");
     target.innerHTML = "";
     list.forEach((item, index) => {
       const str = `<li>${item.name}</li>`;
@@ -26,14 +20,6 @@ function getRandomIntInclusive(min, max) {
     });
   }
   
-  function cutRestaurantList(list) {
-    console.log("fired cut list");
-    const range = [...Array(15).keys()];
-    return (newArray = range.map((item) => {
-      const idx = getRandomIntInclusive(0, list.length - 1);
-      return list[idx];
-    }));
-  }
   
   function initMap(){
     const carto = L.map('map').setView([38.98, -76.93], 13);
@@ -56,7 +42,7 @@ function getRandomIntInclusive(min, max) {
     
     array.forEach((item) => {
       console.log('markerPLace', item);
-      const {coordinates} = item.geocoded_column_1;
+      const {coordinates} = item.station_address;
   
       L.marker((coordinates[1], coordinates[0])).addTo(map);
     })
@@ -109,7 +95,6 @@ function getRandomIntInclusive(min, max) {
   
     generateListButton.addEventListener("click", (event) => {
       console.log("generate new list");
-      currentList = cutRestaurantList(parsedData);
       console.log(currentList);
       injectHTML(currentList);
       markerPlace(currentList, carto);
@@ -123,7 +108,7 @@ function getRandomIntInclusive(min, max) {
       markerPlace(newList, carto);
     });
   
-    clearDataButton.addEventListener('click', (event) => {
+    clearDataButton.addEventListener('generate', (event) => {
       console.log('clear browser data');
       localStorage.clear();
       console.log('localStorage Check', localStorage.getItem("storedData"));

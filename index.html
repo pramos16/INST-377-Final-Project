@@ -3,53 +3,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Paola Ramos INST 377 Final Project</title>
-
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-      crossorigin=""
-    />
-
-    <link rel="stylesheet" href="./styles.css" />
-
-    <script
-      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-      crossorigin=""
-    ></script>
-    
+    <title>Paola Ramos' Labs for INST377</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="header">Prince George's County Local Police Stations</header>
-    <div class="container">
-      <section class="left_section">
-        <div class="input box">
-          <label for="list_selector"></label>
-          <input type="text" name="list_selector" id="list_selector" />
+    <div class="wrapper">
+      <header class="header">
+        <h1>Paola Ramos' Final Project</h1>
+      </header>
+      <div class="container">
+        <div class="left_section box">
+          <h3>Search for a Police Station</h3>
+          <div class="box">
+            <form action="/api">
+              <label for="police">PG City Name</label>
+              <input type="text" id="resto" />
+              <button type="submit">Sumbit</button>
+            </form>
+          </div>
         </div>
-        <div class="buttons">
-          <button class="primary" id="data_load">Load Data</button>
-          <button class="secondary" id="generate">Generate List</button>
+        <div class="right_section box">
+          <h3>Local police stations</h3>
+          <div class="restaurant_list box">A list of local police stations</div>
         </div>
-        <div id="station_list">
-          <ol id="pgstation_list"></ol>
-        </div>
-      </section>
-      <section class="right_section">
-        <div id="map" class="box" ></div>
-          <ol class="box" id="restaurant_list">
-            Local Police Stations
-          </ol>
-          <div class="lds-ellipsis" id="data_load_animation">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-      </section>
+      </div>
     </div>
-    <footer class="footer"></footer>
-    <script src="script.js"></script>
+    <footer class="footer">
+      <p>
+        Pramos16
+        <a
+          href="http://github.com/pramos16"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Paola Ramos Github Account</a
+        >
+      </p>
+    </footer>
   </body>
 </html>
