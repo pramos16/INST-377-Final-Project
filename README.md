@@ -1,6 +1,8 @@
 # Find Local Police Stations in Prince George's County, MD
-## Use this website to enter a city in Prince George's County and find the nearest police station.
+## Description
+Use this website to find local police stations in Prince George's County, MD. 
 ## Link to Github Pages website:
-
-## Target Browsers: Macbook Air, Pro
+https://pramos16.github.io/INST-377-Final-Project/
+## Target Browsers: 
+Macbook Pro & Air, Windows
 
