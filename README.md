@@ -1,5 +1,6 @@
-# INST-377-Final-Project
+# Find Local Police Stations in Prince George's County, MD
+## Use this website to enter a city in Prince George's County and find the nearest police station.
+## Link to Github Pages website:
 
-I will be using the http://universities.hipolabs.com/search?name= api to create a website that displays all the universities that display a certain text. 
-The website will help people search for Universities by State, City, or any other text they would like. 
-The link to github pages is https://pramos16.github.io/INST-377-Final-Project/
+## Target Browsers: Macbook Air, Pro
+
