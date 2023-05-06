@@ -14,17 +14,21 @@
       <div class="container">
         <div class="left_section box">
           <h3>Search for a Police Station</h3>
-          <div class="box">
-            <form action="/api">
+          <form
+            action="https://data.princegeorgescountymd.gov/resource/qkn8-5mhu.json"
+            class="box main_form"
+          >
+            <div>
               <label for="police">PG City Name</label>
-              <input type="text" id="resto" />
-              <button type="submit">Sumbit</button>
-            </form>
-          </div>
+              <input type="text" id="police" />
+            </div>
+            <button type="submit">Load Data</button>
+            <button type="button" class="filter_button">Filter Data</button>
+          </form>
         </div>
         <div class="right_section box">
           <h3>Local police stations</h3>
-          <div class="restaurant_list box">A list of local police stations</div>
+          <div class="police_list box">A list of local police stations</div>
         </div>
       </div>
     </div>
@@ -39,5 +43,6 @@
         >
       </p>
     </footer>
+    <script src="./script.js"></script>
   </body>
 </html>

@@ -92,7 +92,7 @@ form {
   /* this will push other blocks out of the way */
 
   /* colors */
-  background-color: rgb(250, 232, 235);
+  background-color: #a5a58d;
   color: #4a4a4a;
 
   /* shapes */
@@ -103,7 +103,7 @@ form {
 
 
   /* box-shadows are fancy */
-  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgba(241, 240, 240, 0.02);
 }
 
 
