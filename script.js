@@ -1,10 +1,19 @@
-
 async function mainEvent() { // the async keyword means we can make API requests
   const mainForm = document.querySelector('.main_form'); // This class name needs to be set on your form before you can listen for an event on it
   // Add a querySelector that targets your filter button here
-  const filterButton = document.querySelector('.filter_button')
+  const filterDataButton = document.querySelector('.filter_button')
   let currentList = []; // this is "scoped" to the main event function
   
+  unction injectHTML (list) {
+    console.log('fired injectHTML')
+    const target = document.querySelector('#station_list');
+    target.innerHTML = '';
+    list.forEach((item, index) => {
+      const str = `<li>${item.name}</li>`;
+      target.innerHTML += str
+    });
+  }
+
   /* We need to listen to an "event" to have something happen in our page - here we're listening for a "submit" */
   mainForm.addEventListener('submit', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
     
@@ -40,8 +49,8 @@ async function mainEvent() { // the async keyword means we can make API requests
   });
 
 
-  filterButton.addEventListener('click', (event) => {
-    console.log('clicked FilterButton');
+  filterDataButton.addEventListener('click', (event) => {
+    console.log('clicked FilterDataButton');
 
     const formData = new FormData(mainForm);
     const formProps = Object.fromEntries(formData);
