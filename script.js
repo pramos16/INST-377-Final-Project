@@ -1,4 +1,5 @@
 
+
 function injectHTML(list) {
   console.log("fired injectHTML");
   const target = document.querySelector(".police_list");
@@ -25,19 +26,17 @@ function markerPlace(array,map) {
     if (layer instanceof L.Marker) {
       layer.remove();
     }
-    marker.bindPopup(popupContent).openPopup();
   });
   
   array.forEach((item) => {
     console.log('markerPLace', item);
     const latitude = item.station_address.latitude
     const longitude = item.station_address.longitude
-    L.marker([latitude,longitude]).addTo(map);
+    const s_name = item.station_name
+    L.marker([latitude,longitude,s_name]).addTo(map);
   })
 
 }
-
-
 
 function station_list(list, query) {
   return list.filter((item) => {
