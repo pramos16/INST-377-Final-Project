@@ -292,6 +292,13 @@ form input {
     border-radius: 4px;
   }
 
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
   form label {
     width: 100%;
     width: -moz-available;          /* WebKit-based browsers will ignore this. */
