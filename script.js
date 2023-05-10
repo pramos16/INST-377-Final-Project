@@ -25,17 +25,19 @@ function markerPlace(array,map) {
     if (layer instanceof L.Marker) {
       layer.remove();
     }
+    marker.bindPopup(popupContent).openPopup();
   });
   
   array.forEach((item) => {
     console.log('markerPLace', item);
     const latitude = item.station_address.latitude
     const longitude = item.station_address.longitude
-    const s_name = item.station_name
-    L.marker([latitude,longitude,s_name]).addTo(map);
+    L.marker([latitude,longitude]).addTo(map);
   })
 
 }
+
+
 
 function station_list(list, query) {
   return list.filter((item) => {
