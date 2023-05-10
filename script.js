@@ -1,4 +1,5 @@
 
+
 function injectHTML(list) {
   console.log("fired injectHTML");
   const target = document.querySelector(".police_list");
@@ -21,7 +22,6 @@ return carto;
 
 function markerPlace(array,map) {
   console.log('array for markers', array);
-
   map.eachLayer((layer) => {
     if (layer instanceof L.Marker) {
       layer.remove();
@@ -32,18 +32,21 @@ function markerPlace(array,map) {
     console.log('markerPLace', item);
     const latitude = item.station_address.latitude
     const longitude = item.station_address.longitude
-    L.marker([latitude,longitude]).addTo(map);
+    const s_name = item.station_name
+    L.marker([latitude,longitude,s_name]).addTo(map);
   })
 
 }
 
 function station_list(list, query) {
   return list.filter((item) => {
-    const lowerCaseName = item.name.toLowerCase();
+    const lowerCaseName = item.station_name.toLowerCase();
     const lowerCaseQuery = query.toLowerCase();
-    return lowerCaseName.includes(lowerCaseQuery);
+    return lowerCaseName === lowerCaseQuery;
   });
+
 }
+
  /*
   1. When loadButton is clicked, save the data into local storage 
   2. When the page loads, get the data from local storage 
@@ -66,7 +69,7 @@ async function mainEvent() { // the async keyword means we can make API requests
   const storedData = localStorage.getItem("storedData"); 
   let parsedData = JSON.parse(storedData);
   if (parsedData?.length > 0) { 
-    console.log(parsedData);
+    console.log("asdasd",parsedData);
   } else {
     console.log("data was not stored");
   }
@@ -102,6 +105,7 @@ async function mainEvent() { // the async keyword means we can make API requests
     localStorage.setItem("storedData", JSON.stringify(currentList));
 
     // Place the map markers for the different stations 
+    console.log("mapping", currentList, station_map);
     markerPlace(currentList, station_map);
     /*
       This array initially contains all 1,000 records from your request,
@@ -113,14 +117,18 @@ async function mainEvent() { // the async keyword means we can make API requests
     /* Inject hTML*/ 
   });
 
-
+  
   filterButton.addEventListener('click', (event) => {
     console.log('clicked FilterButton');
 
+    // Retrieve the search query from the form
     const formData = new FormData(mainForm);
     const formProps = Object.fromEntries(formData);
-
-    console.log(formProps);
+    const searchQuery = formProps.police;
+  
+    console.log('Search Query:', searchQuery);
+    
+    markerPlace(station_list(currentList,searchQuery), station_map);
 
 })
   /*
